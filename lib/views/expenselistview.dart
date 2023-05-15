@@ -32,7 +32,7 @@ class ExpenseListView extends StatelessWidget {
                   return ListTile(
                     title: Text(expense.title),
                     subtitle:
-                        Text('Amount: \#${expense.amount.toStringAsFixed(2)}'),
+                        Text('Amount:\#${expense.amount.toStringAsFixed(2)}'),
                     onTap: () {
                       Get.to(EditExpenseView(expense: expense));
                     },
