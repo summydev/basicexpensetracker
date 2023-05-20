@@ -1,15 +1,36 @@
 import 'package:expensetracker/models/expensemodel.dart';
+import 'package:expensetracker/models/utils.dart';
 import 'package:expensetracker/services/expenseservice.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ExpenseController extends GetxController {
   final ExpenseService _expenseService = ExpenseService();
-  final expenses = <Expense>[].obs;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  RxList<Expense> expenses = <Expense>[].obs;
 
   @override
   void onInit() {
     super.onInit();
     loadExpenses();
+  }
+
+  Future<void> fetchExpenses(String userId) async {
+    try {
+      final QuerySnapshot snapshot = await _firestore.collection(userId).get();
+      // .where('userId', isEqualTo: userId)
+
+      final List<Expense> fetchedExpenses = snapshot.docs
+          .map((doc) => Expense.fromMap(doc.data()))
+          .toList()
+          .cast();
+
+      expenses.value = fetchedExpenses;
+    } catch (error) {
+      print('Error fetching expenses: $error');
+      Utils.showSnackBar(error.toString());
+    }
   }
 
   Future<void> loadExpenses() async {

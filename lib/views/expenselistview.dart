@@ -1,6 +1,8 @@
-import 'package:expensetracker/routes/routes.dart';
+//import 'package:expensetracker/routes/routes.dart';
 import 'package:expensetracker/views/addexpenseview.dart';
 import 'package:expensetracker/views/editexpenseviews.dart';
+import 'package:expensetracker/views/signin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:expensetracker/controller/expensecontroller.dart';
@@ -15,13 +17,19 @@ class ExpenseListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: TextButton(
+          onPressed: () {
+            logoutUser();
+          },
+          child: Icon(Icons.logout),
+        ),
         title: const Text('Expense Tracker'),
       ),
       body: Column(
         children: [
           Text('Note: Tap on the expenses list to edit'),
           Text('Note: Long Press on the expenses list to delete'),
-             Text('Note: use the \"+\" to add more expenses '),
+          Text('Note: use the \"+\" to add more expenses '),
           Expanded(
             child: Obx(
               () => ListView.builder(
@@ -53,5 +61,16 @@ class ExpenseListView extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+void logoutUser() async {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Get.to(SignInScreen());
+  try {
+    await auth.signOut();
+    // Perform any additional actions after successful logout
+  } catch (err) {
+    print('Error logging out: $err');
   }
 }

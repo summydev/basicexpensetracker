@@ -4,4 +4,6 @@ class Expense {
   final double amount;
 
   Expense({required this.id, required this.title, required this.amount});
+
+  static fromMap(Object? data) {}
 }

@@ -1,6 +1,8 @@
 import 'package:expensetracker/routes/routes.dart';
 import 'package:expensetracker/views/addexpenseview.dart';
 import 'package:expensetracker/views/expenselistview.dart';
+import 'package:expensetracker/views/signin.dart';
+import 'package:expensetracker/views/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -17,10 +19,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: ExpenseListView(),
+      home: SignInScreen(),
       // initialRoute:RoutesClass.getHomeRoute() ,
    
     );
