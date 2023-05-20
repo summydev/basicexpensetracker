@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@npmcli/move-file": "^3.0.0",
+    "har-validator": "^5.1.5",
+    "request": "^2.88.2",
+    "uuid": "^9.0.0"
+  },
+  "dependencies": {
+    "firebase": "^9.22.0"
+  }
+}
