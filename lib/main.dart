@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: SignInScreen(),
+      home: SignUpScreen(),
       // initialRoute:RoutesClass.getHomeRoute() ,
    
     );
