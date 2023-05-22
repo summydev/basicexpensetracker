@@ -13,7 +13,7 @@ Future<void> fetchExpenses(String userId) async {
     try {
       final QuerySnapshot querysnapshot = await _firestore
           .collection('expenses')
-          .where('userId', isEqualTo: userId)
+          .where("uid", isEqualTo: userId)
           .get();
       final List<Expense> fetchedExpenses = querysnapshot.docs
           .map((doc) => Expense.fromMap(doc.data()))

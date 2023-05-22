@@ -1,7 +1,4 @@
-import 'package:expensetracker/routes/routes.dart';
-import 'package:expensetracker/views/addexpenseview.dart';
-import 'package:expensetracker/views/expenselistview.dart';
-import 'package:expensetracker/views/signin.dart';
+
 import 'package:expensetracker/views/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
