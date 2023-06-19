@@ -32,9 +32,9 @@ class _SignInScreenState extends State<SignInScreen> {
         );
 
         // Retrieve the user's expenses
-        final _uid = _auth.currentUser?.uid;
-        expenseController.fetchExpenses(_uid!);
-
+        await expenseController.fetchExpenses(_auth.currentUser!.uid);
+        await expenseController.loadExpenses();
+        //navigate to the next screen
         Get.to(ExpenseListView());
         print('User signed in successfully!');
       } on FirebaseAuthException catch (error) {

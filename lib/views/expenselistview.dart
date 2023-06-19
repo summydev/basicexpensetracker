@@ -2,6 +2,7 @@
 import 'package:expensetracker/views/addexpenseview.dart';
 import 'package:expensetracker/views/editexpenseviews.dart';
 import 'package:expensetracker/views/signin.dart';
+import 'package:expensetracker/views/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,23 @@ import 'package:expensetracker/controller/expensecontroller.dart';
 class ExpenseListView extends StatelessWidget {
   // const ExpenseListView({super.key});
 
-  final ExpenseController expenseController = Get.put(ExpenseController());
+  final ExpenseController expenseController = Get.find<ExpenseController>();
+  //String? userid = FirebaseAuth.instance.currentUser!.uid;
+
+  void logoutUser() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    try {
+      await auth.signOut();
+      // ignore: unused_local_variable
+      String? userid = auth.currentUser!.uid;
+      userid = null;
+      // Perform any additional actions after successful logout
+    } catch (err) {
+      print('Error logging out: $err');
+    }
+    Get.to(SignUpScreen());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +38,7 @@ class ExpenseListView extends StatelessWidget {
           onPressed: () {
             logoutUser();
           },
-          child: Icon(Icons.logout),
+          child: Icon(Icons.logout,color: Colors.redAccent,),
         ),
         title: const Text('Expense Tracker'),
       ),
@@ -33,7 +50,7 @@ class ExpenseListView extends StatelessWidget {
           Expanded(
             child: Obx(
               () => ListView.builder(
-                itemCount: expenseController.expenses.length,
+                itemCount: expenseController. expenses.length,
                 itemBuilder: (context, index) {
                   final expense = expenseController.expenses[index];
 
@@ -61,16 +78,5 @@ class ExpenseListView extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
     );
-  }
-}
-
-void logoutUser() async {
-  FirebaseAuth auth = FirebaseAuth.instance;
-  Get.to(SignInScreen());
-  try {
-    await auth.signOut();
-    // Perform any additional actions after successful logout
-  } catch (err) {
-    print('Error logging out: $err');
   }
 }

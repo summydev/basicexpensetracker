@@ -29,6 +29,13 @@
             {
               "client_id": "945793861093-09f9fe9ou7dluedoihos90snvmcpvn04.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "945793861093-ff4og68ikeuc16bbat9p6kjh1go3cmgj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.expensetracker.RunnerTests"
+              }
             }
           ]
         }
